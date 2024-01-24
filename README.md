@@ -23,6 +23,7 @@
 
 ### Data format from methods section of PMID: 32945258 : The TruSeq Stranded mRNA Library Prep Kit (RS-122–2101/RS-122–2102) was then used to prepare the samples for 30 million reads of single end sequencing (100 bp) with the Illumina HiSeq2500. Three replicates were used for the combination experiments and two replicates for the dose experiments.
 
-### The data is sinlge end, 100 bp reads, This modify the pipeline from a paired end to asingle end stranded approach. We will
-### put in a trim step to remove the polyA tails, and then proceed with the rest of the pipeline as normal.
+### The data is sinlge end, 100 bp reads, This modify the pipeline from a paired end to asingle end stranded approach. 
+### We will put in a trim step to remove the polyA tails, and then proceed with the rest of the pipeline as normal. 
+
 
