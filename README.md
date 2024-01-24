@@ -13,7 +13,9 @@
 ###    each time point. []
 
 #### Overall design:RNAseq of MCF7 and LNCaP cells each treated with
-#### DMSO, 3 drugs, and the 3 combinations of the 3 drugs, in trplicate #### well as a triple combination in LNCaP, at 0, 3, 6, 9, 12, and 24 #### hours
+#### DMSO, 3 drugs, and the 3 combinations of the 3 drugs, in trplicate 
+#### well as a triple combination in LNCaP, at 0, 3, 6, 9, 12, and 24 
+#### hours
 
 ### The drugs are: Tamoxifen, Mefloquine, and Withaferin A
 ### The cell lines are: MCF7 and LNCaP
