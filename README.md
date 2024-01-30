@@ -6,9 +6,9 @@
 ##### ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #### 1. Download the data [X]
-#### 2. Quality control with trimming with trimgalore, multiqc []
-#### 3. Alignment with STAR, featureCounts []
-#### 4. Quantify with salmon, and RSEM []
+#### 2. Quality control with trimming with trimgalore, multiqc [X]
+#### 3. Alignment with STAR, featureCounts [X]
+#### 4. Quantify with salmon, and RSEM [X]
 #### 5. Differential expression with DESeq2 against DMSO for each drug at
 ####    each time point. []
 
