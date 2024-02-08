@@ -1,0 +1,114 @@
+Skeleton code for making your visualization into a shell script you can run on the HPC
+
+#!/usr/bin/env Rscript
+#####################################
+# Date: 2023-1-5
+# Author: Michael Skaro
+# Purpose: 
+
+# Usage: R script to be invoked and interacted with from the terminal.
+# Parameters: See functions, below for details
+# Outputs: scatter plot from geom point
+
+# install the optparse package if not already installed
+if (!requireNamespace("optparse", quietly = TRUE)) {
+  install.packages("optparse", repos = "http://cran.us.r-project.org")
+}
+# create an opt list for the aruguements
+option_list = list(
+    make_option(c("-f", "--file"), type="character", default=NULL, 
+              help="dataset file name", metavar="character"),
+    make_option(c("-o", "--out"), type="character", default="output/", 
+              help="output file directory [default= %default]", metavar="character"),
+    make_option(c("-E", "--experiment"), type="character", default="experiment", 
+              help="experiment name [default= %default]", metavar="character"))
+
+# parse the arguments to get a file, create the ouput directory, and get the experiment name
+
+opt_parser = OptionParser(option_list=option_list);
+opt = parse_args(opt_parser);
+if (is.null(opt$file)) {
+  stop("Please specify a dataset file name with -f or --file");
+}
+if (is.null(opt$out)) {
+  stop("Please specify an output file directory with -o or --out");
+}
+if (is.null(opt$experiment)) {
+  stop("Please specify an experiment name with -E or --experiment");
+}
+
+
+# create the output directory
+dir.create(opt$out, showWarnings = FALSE)
+# install the packages you will need to do the work associated with analyzing the data
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+}
+
+# install packages
+install.packages("data.table", repos = "http://cran.us.r-project.org")
+install.packages("ggpubr", repos = "http://cran.us.r-project.org")
+install.packages("ggrepel", repos = "http://cran.us.r-project.org")
+library(dplyr)
+library(plyr)
+library(tidyr)
+library(stringr)
+library(tibble)
+library(ggplot2)
+library(data.table)
+library(ggpubr)
+library(ggrepel)
+
+# if you need a package from bioconductor, you will need to install it from bioconductor
+############################
+
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager", repos = "http://cran.us.r-project.org")
+}
+
+# test that bioconductor can be accessed with the Biocmanager.
+
+BiocManager::install("DESeq2")
+library(DESeq2)
+
+############################
+# read in the data
+
+dat <- read.csv(opt$file, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+
+# evaluate the experiment arguement into a variable
+experiment <- opt$experiment
+# create functions do do the work you will need to do to analyze the qPCR data
+function1 <- function() {
+  # do something
+}
+function2 <- function() {
+  # do something
+}
+function3 <- function() {
+  # do something
+}
+
+# call the functions
+object1 <- function1()
+object2 <- function2()
+object3 <- function3()
+
+
+# now that you have the objects you need, you can create the plots you need
+# create a scatter plot
+p <- ggplot(dat, aes(x = object1, y = object2)) + 
+geom_point() + 
+geom_smooth(method = "lm", se = FALSE) + 
+labs(x = "x", y = "y") + theme_bw() + 
+theme(legend.position = "none") + 
+theme(plot.title = element_text(hjust = 0.5)) + 
+ggtitle(str_glue("I am plotting something for the {experiment}")) +
+scale_x_continuous(breaks = seq(0, 10, 1)) +
+scale_y_continuous(breaks = seq(0, 10, 1))
+# create the output directory if it does not exist
+dir.create(opt$out, showWarnings = FALSE)
+# saver the plot with the ggsave function
+ggsave(filename = str_glue("{opt$out}_{experiment}_scatter_plot.png"), plot = p, width = 10, height = 10, units = "in", dpi = 300)
+# print the done message to the terminal to signify that the script has completed
+print("Done!")
